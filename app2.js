@@ -1,4 +1,4 @@
-git 'use strict';
+'use strict';
 
 var pike = {
   store: '1st and Pike',
@@ -27,7 +27,28 @@ var pike = {
       console.log('Total cookies:', this.totalCookies);
     }
     return this.totalCookies;
+  },
+  // method to render list to browser
+  render: function() {
+    // create new elements
+    var main = document.createElement('store_info');
+    var h2 = document.createElement('h2');
+    var ul = document.createElement('ul');
+    // adds header
+    h2.textContent = this.store;
+    main.appendChild(ul);
+    // adds list to page under h2
+    ul.appendChild(h2);
+    // loops through each hour, adding list items
+    for (var k = 0; k < this.cookies.length; k++) {
+      var li = document.createElement('li');
+      li.textContent = this.timeOfDay + ': ' + this.cookies[k];
+      ul.appendChild(li);
+    }
+    li.textContent = 'Total', this.totalCookies;
+    console.log('Total', this.totalCookies);
   }
-
-
 };
+pike.cookiesPerHour();
+pike.cookiesPerDay();
+pike.render();
