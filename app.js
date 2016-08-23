@@ -39,25 +39,44 @@ Store.prototype.render = function() {
   this.cookiesPerDay();
   console.log('Render',this.cookies, this.totalCookies);
 
-  // create new elements
-  var main = document.getElementById('store_info');
-  var h2 = document.createElement('h2');
-  var ul = document.createElement('ul');
-  // adds header
-  h2.textContent = this.store;
-  main.appendChild(ul);
-  // adds list to page under h2
-  ul.appendChild(h2);
-  // loops through each hour, adding list items
-  for (var k = 0; k <= this.cookies.length; k++) {
-    var li = document.createElement('li');
-    li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
-    ul.appendChild(li);
-  }
-  // adds list item for total cookies
-  li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+  // create table
+  var salesTable = document.createElement('table');
 
-  console.log('Total:', this.totalCookies);
+  // create thead
+  var salesHead = document.createElement('thead');
+  var tableRow = document.createElement('tr');
+  var headerContent = this.timeOfDay;
+
+  for (var i = 0; i < this.timeOfDay.length; i++) {
+    var th = document.createElement('th');
+    th.textContent = headerContent[i];
+    tableRow.appendChild(th);
+  };
+
+  salesHead.appendChild(tableRow);
+  salesTable.appendChild(salesHead);
+
+  // create tbody
+  var bodyContent = this.cookies;
+  var tbody = document.createElement('tbody');
+  var bodyRow = document.createElement('tr');
+  var rowHeader = document.createElement('th');
+
+  rowHeader.textContent = 'Pike Place';
+  bodyRow.appendChild(rowHeader);
+
+  for (var j = 0; j < this.timeOfDay.length; j++) {
+    var td = document.createElement('td');
+    td.textContent = bodyContent[j];
+    bodyRow.appendChild(td);
+  };
+
+  tbody.appendChild(bodyRow);
+  salesTable.appendChild(tbody);
+
+  // adding table to dom
+  var main = document.getElementById('sales_data');
+  main.appendChild(salesTable);
 };
 
 
