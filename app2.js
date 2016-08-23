@@ -15,6 +15,7 @@ var pike = {
   // cookies per hour method
   cookiesPerHour: function() {
     for (var i = 0; i < this.timeOfDay.length; i++) {
+
       var hourly = Math.floor(this.generateRandom() * this.avgCookies);
       console.log('Cookies per hour', hourly);
       this.cookies.push(hourly); // store cookies per hour in array
@@ -50,6 +51,7 @@ var pike = {
     }
     // adds list item for total cookies
     li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+
     console.log('Total:', this.totalCookies);
   }
 };
