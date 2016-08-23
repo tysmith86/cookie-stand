@@ -1,204 +1,291 @@
 'use strict';
 
+// 1st and Pike
 var pike = {
   store: '1st and Pike',
   minCust: 23,
   maxCust: 65,
-  cookies: 0,
+  cookies: [], // initialize cookies per hour array
   avgCookies: 6.3,
   totalCookies: 0,
-  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
+  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+  // generate random method
   generateRandom: function() {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
+  // cookies per hour method
   cookiesPerHour: function() {
-    this.cookies = this.generateRandom() * this.avgCookies;
-    console.log('Cookies per hour', this.cookies);
-    return this.cookies;
+    for (var i = 0; i < this.timeOfDay.length; i++) {
+
+      var hourly = Math.floor(this.generateRandom() * this.avgCookies);
+      console.log('Cookies per hour', hourly);
+      this.cookies.push(hourly); // store cookies per hour in array
+    }
   },
+  // cookies per day method
   cookiesPerDay: function() {
-    // for (var i = 0; i < this.timeOfDay.length; i++) {
-    this.totalCookies += this.cookiesPerHour();
-    console.log('Total ' + this.totalCookies);
-    // }
-    return this.totalCookies;
+    this.totalCookies = 0; // resets variable
+    for (var j = 0; j < this.cookies.length; j++) {
+      this.totalCookies += this.cookies[j];
+      console.log('Total cookies:', this.totalCookies);
+    }
   },
+  // method to render list to browser
   render: function() {
-    var cookieTotal = this.cookiesPerDay();
+    // calls previous methods so their output is usable in the render function
+    pike.cookiesPerHour();
+    pike.cookiesPerDay();
+    // create new elements
+    var main = document.getElementById('store_info');
     var h2 = document.createElement('h2');
     var ul = document.createElement('ul');
-    var main = document.getElementById('store_info');
+    // adds header
+    h2.textContent = this.store;
+    main.appendChild(ul);
+    // adds list to page under h2
     ul.appendChild(h2);
-    // loops through and adds cookies per hour for each hour
-    for (var j = 0; j < this.timeOfDay.length; j++) {
-      var hourly = this.cookiesPerHour();
+    // loops through each hour, adding list items
+    for (var k = 0; k <= this.cookies.length; k++) {
       var li = document.createElement('li');
-      cookieTotal += this.cookiesPerDay();
-
-      h2.textContent = this.store;
-      main.appendChild(ul);
-
-      li.textContent = this.timeOfDay[j] + ': ' + hourly;
+      li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
       ul.appendChild(li);
     }
-    console.log('cookie total', cookieTotal);
-    li.textContent = 'Total: ' + cookieTotal;
+    // adds list item for total cookies
+    li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+
+    console.log('Total:', this.totalCookies);
   }
 };
 pike.render();
 
-// var seatac = {
-//   store: 'SeaTac Airport',
-//   minCust: 3,
-//   maxCust: 24,
-//   avgCookies: 1.2,
-//   totalCookies: 0,
-//   timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//   generateRandom: function() {
-//     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
-//   },
-//   cookiesPerHour: function() {
-//     return this.generateRandom() * this.avgCookies;
-//   },
-//   cookiesPerDay: function() {
-//     for (var i = 0; i <= this.timeOfDay.length; i++) {
-//       this.totalCookies += this.cookiesPerHour();
-//     }
-//     return this.totalCookies;
-//   },
-//   render: function() {
-//     var h2 = document.createElement('h2');
-//     var ul = document.createElement('ul');
-//     var main = document.getElementById('store_info');
-//     ul.appendChild(h2);
-//     // loops through and adds cookies per hour for each hour
-//     for (var j = 0; j < this.timeOfDay.length; j++) {
-//       var li = document.createElement('li');
-//
-//       h2.textContent = this.store;
-//       main.appendChild(ul);
-//
-//       li.textContent = this.timeOfDay[j] + ': ' + this.cookiesPerHour() + ' cookies';
-//       ul.appendChild(li);
-//     }
-//     li.textContent = 'Total: ' + this.cookiesPerDay() + ' cookies';
-//   }
-// };
-// seatac.render();
-//
-// var seattleCenter = {
-//   store: 'Seattle Center',
-//   minCust: 11,
-//   maxCust: 38,
-//   avgCookies: 3.7,
-//   totalCookies: 0,
-//   timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//   generateRandom: function() {
-//     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
-//   },
-//   cookiesPerHour: function() {
-//     return this.generateRandom() * this.avgCookies;
-//   },
-//   cookiesPerDay: function() {
-//     for (var i = 0; i <= this.timeOfDay.length; i++) {
-//       this.totalCookies += this.cookiesPerHour();
-//     }
-//     return this.totalCookies;
-//   },
-//   render: function() {
-//     var h2 = document.createElement('h2');
-//     var ul = document.createElement('ul');
-//     var main = document.getElementById('store_info');
-//     ul.appendChild(h2);
-//     // loops through and adds cookies per hour for each hour
-//     for (var j = 0; j < this.timeOfDay.length; j++) {
-//       var li = document.createElement('li');
-//
-//       h2.textContent = this.store;
-//       main.appendChild(ul);
-//
-//       li.textContent = this.timeOfDay[j] + ': ' + this.cookiesPerHour() + ' cookies';
-//       ul.appendChild(li);
-//     }
-//     li.textContent = 'Total: ' + this.cookiesPerDay() + ' cookies';
-//   }
-// };
-// seattleCenter.render();
-//
-// var capitolHill = {
-//   store: 'Capitol Hill',
-//   minCust: 20,
-//   maxCust: 38,
-//   avgCookies: 2.3,
-//   totalCookies: 0,
-//   timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//   generateRandom: function() {
-//     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
-//   },
-//   cookiesPerHour: function() {
-//     return this.generateRandom() * this.avgCookies;
-//   },
-//   cookiesPerDay: function() {
-//     for (var i = 0; i <= this.timeOfDay.length; i++) {
-//       this.totalCookies += this.cookiesPerHour();
-//     }
-//     return this.totalCookies;
-//   },
-//   render: function() {
-//     var h2 = document.createElement('h2');
-//     var ul = document.createElement('ul');
-//     var main = document.getElementById('store_info');
-//     ul.appendChild(h2);
-//     // loops through and adds cookies per hour for each hour
-//     for (var j = 0; j < this.timeOfDay.length; j++) {
-//       var li = document.createElement('li');
-//
-//       h2.textContent = this.store;
-//       main.appendChild(ul);
-//
-//       li.textContent = this.timeOfDay[j] + ': ' + this.cookiesPerHour() + ' cookies';
-//       ul.appendChild(li);
-//     }
-//     li.textContent = 'Total: ' + this.cookiesPerDay() + ' cookies';
-//   }
-// };
-// capitolHill.render();
-//
-// var alki = {
-//   store: 'Alki',
-//   minCust: 2,
-//   maxCust: 16,
-//   avgCookies: 4.6,
-//   totalCookies: 0,
-//   timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
-//   generateRandom: function() {
-//     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
-//   },
-//   cookiesPerHour: function() {
-//     return this.generateRandom() * this.avgCookies;
-//   },
-//   cookiesPerDay: function() {
-//     for (var i = 0; i <= this.timeOfDay.length; i++) {
-//       this.totalCookies += this.cookiesPerHour();
-//     }
-//     return this.totalCookies;
-//   },
-//   render: function() {
-//     var h2 = document.createElement('h2');
-//     var ul = document.createElement('ul');
-//     var main = document.getElementById('store_info');
-//     ul.appendChild(h2);
-//     // loops through and adds cookies per hour for each hour
-//     for (var j = 0; j < this.timeOfDay.length; j++) {
-//       var li = document.createElement('li');
-//
-//       h2.textContent = this.store;
-//       main.appendChild(ul);
-//
-//       li.textContent = this.timeOfDay[j] + ': ' + this.cookiesPerHour() + ' cookies';
-//       ul.appendChild(li);
-//     }
-//     li.textContent = 'Total: ' + this.cookiesPerDay() + ' cookies';
-//   }
-// };
-// alki.render();
+// SeaTac Airport
+var seaTac = {
+  store: 'SeaTac Airport',
+  minCust: 3,
+  maxCust: 24,
+  avgCookies: 1.2,
+  cookies: [], // initialize cookies per hour array
+  totalCookies: 0,
+  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+  // generate random method
+  generateRandom: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+  },
+  // cookies per hour method
+  cookiesPerHour: function() {
+    for (var i = 0; i < this.timeOfDay.length; i++) {
+
+      var hourly = Math.floor(this.generateRandom() * this.avgCookies);
+      console.log('Cookies per hour', hourly);
+      this.cookies.push(hourly); // store cookies per hour in array
+    }
+  },
+  // cookies per day method
+  cookiesPerDay: function() {
+    for (var j = 0; j < this.cookies.length; j++) {
+      this.totalCookies += this.cookies[j];
+      console.log('Total cookies:', this.totalCookies);
+    }
+    return this.totalCookies; // this code may not be neccessary since this function updates a variable
+  },
+  // method to render list to browser
+  render: function() {
+    // calls previous methods so their output is usable in the render function
+    seaTac.cookiesPerHour();
+    seaTac.cookiesPerDay();
+    // create new elements
+    var main = document.getElementById('store_info');
+    var h2 = document.createElement('h2');
+    var ul = document.createElement('ul');
+    // adds header
+    h2.textContent = this.store;
+    main.appendChild(ul);
+    // adds list to page under h2
+    ul.appendChild(h2);
+    // loops through each hour, adding list items
+    for (var k = 0; k <= this.cookies.length; k++) {
+      var li = document.createElement('li');
+      li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
+      ul.appendChild(li);
+    }
+    // adds list item for total cookies
+    li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+
+    console.log('Total:', this.totalCookies);
+  }
+};
+seaTac.render();
+
+// Seattle Center
+var seattleCenter = {
+  store: 'Seattle Center',
+  minCust: 11,
+  maxCust: 38,
+  avgCookies: 3.7,
+  cookies: [], // initialize cookies per hour array
+  totalCookies: 0,
+  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+  // generate random method
+  generateRandom: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+  },
+  // cookies per hour method
+  cookiesPerHour: function() {
+    for (var i = 0; i < this.timeOfDay.length; i++) {
+
+      var hourly = Math.floor(this.generateRandom() * this.avgCookies);
+      console.log('Cookies per hour', hourly);
+      this.cookies.push(hourly); // store cookies per hour in array
+    }
+  },
+  // cookies per day method
+  cookiesPerDay: function() {
+    for (var j = 0; j < this.cookies.length; j++) {
+      this.totalCookies += this.cookies[j];
+      console.log('Total cookies:', this.totalCookies);
+    }
+    return this.totalCookies; // this code may not be neccessary since this function updates a variable
+  },
+  // method to render list to browser
+  render: function() {
+    // calls previous methods so their output is usable in the render function
+    seattleCenter.cookiesPerHour();
+    seattleCenter.cookiesPerDay();
+    // create new elements
+    var main = document.getElementById('store_info');
+    var h2 = document.createElement('h2');
+    var ul = document.createElement('ul');
+    // adds header
+    h2.textContent = this.store;
+    main.appendChild(ul);
+    // adds list to page under h2
+    ul.appendChild(h2);
+    // loops through each hour, adding list items
+    for (var k = 0; k <= this.cookies.length; k++) {
+      var li = document.createElement('li');
+      li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
+      ul.appendChild(li);
+    }
+    // adds list item for total cookies
+    li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+
+    console.log('Total:', this.totalCookies);
+  }
+};
+seattleCenter.render();
+
+// Capitol Hill
+var capitolHill = {
+  store: 'Capitol Hill',
+  minCust: 20,
+  maxCust: 38,
+  avgCookies: 2.3,
+  cookies: [], // initialize cookies per hour array
+  totalCookies: 0,
+  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+  // generate random method
+  generateRandom: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+  },
+  // cookies per hour method
+  cookiesPerHour: function() {
+    for (var i = 0; i < this.timeOfDay.length; i++) {
+
+      var hourly = Math.floor(this.generateRandom() * this.avgCookies);
+      console.log('Cookies per hour', hourly);
+      this.cookies.push(hourly); // store cookies per hour in array
+    }
+  },
+  // cookies per day method
+  cookiesPerDay: function() {
+    for (var j = 0; j < this.cookies.length; j++) {
+      this.totalCookies += this.cookies[j];
+      console.log('Total cookies:', this.totalCookies);
+    }
+    return this.totalCookies; // this code may not be neccessary since this function updates a variable
+  },
+  // method to render list to browser
+  render: function() {
+    // calls previous methods so their output is usable in the render function
+    capitolHill.cookiesPerHour();
+    capitolHill.cookiesPerDay();
+    // create new elements
+    var main = document.getElementById('store_info');
+    var h2 = document.createElement('h2');
+    var ul = document.createElement('ul');
+    // adds header
+    h2.textContent = this.store;
+    main.appendChild(ul);
+    // adds list to page under h2
+    ul.appendChild(h2);
+    // loops through each hour, adding list items
+    for (var k = 0; k <= this.cookies.length; k++) {
+      var li = document.createElement('li');
+      li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
+      ul.appendChild(li);
+    }
+    // adds list item for total cookies
+    li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+
+    console.log('Total:', this.totalCookies);
+  }
+};
+capitolHill.render();
+
+// Alki
+var alki = {
+  store: 'Alki',
+  minCust: 2,
+  maxCust: 16,
+  avgCookies: 4.6,
+  cookies: [], // initialize cookies per hour array
+  totalCookies: 0,
+  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
+  // generate random method
+  generateRandom: function() {
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+  },
+  // cookies per hour method
+  cookiesPerHour: function() {
+    for (var i = 0; i < this.timeOfDay.length; i++) {
+
+      var hourly = Math.floor(this.generateRandom() * this.avgCookies);
+      console.log('Cookies per hour', hourly);
+      this.cookies.push(hourly); // store cookies per hour in array
+    }
+  },
+  // cookies per day method
+  cookiesPerDay: function() {
+    for (var j = 0; j < this.cookies.length; j++) {
+      this.totalCookies += this.cookies[j];
+      console.log('Total cookies:', this.totalCookies);
+    }
+    return this.totalCookies; // this code may not be neccessary since this function updates a variable
+  },
+  // method to render list to browser
+  render: function() {
+    // calls previous methods so their output is usable in the render function
+    alki.cookiesPerHour();
+    alki.cookiesPerDay();
+    // create new elements
+    var main = document.getElementById('store_info');
+    var h2 = document.createElement('h2');
+    var ul = document.createElement('ul');
+    // adds header
+    h2.textContent = this.store;
+    main.appendChild(ul);
+    // adds list to page under h2
+    ul.appendChild(h2);
+    // loops through each hour, adding list items
+    for (var k = 0; k <= this.cookies.length; k++) {
+      var li = document.createElement('li');
+      li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
+      ul.appendChild(li);
+    }
+    // adds list item for total cookies
+    li.textContent = 'Total: ' + this.totalCookies + ' cookies';
+
+    console.log('Total:', this.totalCookies);
+  }
+};
+alki.render();
