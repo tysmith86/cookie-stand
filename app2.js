@@ -7,7 +7,7 @@ var pike = {
   cookies: [], // initialize cookies per hour array
   avgCookies: 6.3,
   totalCookies: 0,
-  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm', '8pm'],
+  timeOfDay: ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'],
   // generate random method
   generateRandom: function() {
     return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
@@ -26,12 +26,15 @@ var pike = {
       this.totalCookies += this.cookies[j];
       console.log('Total cookies:', this.totalCookies);
     }
-    return this.totalCookies;
+    return this.totalCookies; // this code may not be neccessary since this function updates a variable
   },
   // method to render list to browser
   render: function() {
+    // calls previous methods so their output is usable in the render function
+    pike.cookiesPerHour();
+    pike.cookiesPerDay();
     // create new elements
-    var main = document.createElement('store_info');
+    var main = document.getElementById('store_info');
     var h2 = document.createElement('h2');
     var ul = document.createElement('ul');
     // adds header
@@ -40,15 +43,13 @@ var pike = {
     // adds list to page under h2
     ul.appendChild(h2);
     // loops through each hour, adding list items
-    for (var k = 0; k < this.cookies.length; k++) {
+    for (var k = 0; k <= this.cookies.length; k++) {
       var li = document.createElement('li');
-      li.textContent = this.timeOfDay + ': ' + this.cookies[k];
+      li.textContent = this.timeOfDay[k] + ': ' + this.cookies[k] + ' cookies';
       ul.appendChild(li);
     }
-    li.textContent = 'Total', this.totalCookies;
-    console.log('Total', this.totalCookies);
+  li.textContent = 'Total: ', this.totalCookies;
+    console.log('Total:', this.totalCookies);
   }
 };
-pike.cookiesPerHour();
-pike.cookiesPerDay();
 pike.render();
