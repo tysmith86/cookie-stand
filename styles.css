@@ -1,6 +1,6 @@
-body {
+/*body {
   background-color: rgb(0, 0, 100);
-}
+}*/
 
 header {
   margin: auto;
@@ -48,7 +48,7 @@ ul {
 }
 
 #sales_data {
-  color: white;
+  /*color: white;*/
 }
 
 section {
