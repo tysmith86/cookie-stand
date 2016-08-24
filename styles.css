@@ -1,6 +1,14 @@
+/*body {
+  background-color: rgb(0, 0, 255);
+}*/
+
 header {
   margin: auto;
   text-align: center;
+  border: 5px outset black;
+  width: 1000px;
+  background-image: url('images/ocean.jpg');
+  padding-bottom: 10px;
 }
 
 h1 {
