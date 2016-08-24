@@ -77,6 +77,28 @@ function createTable() {
   main.appendChild(table);
 };
 
+////////////////////////////////////////////////////////////////////
+//////////////////////////// forms /////////////////////////////////
+////////////////////////////////////////////////////////////////////
+
+// get form
+var newStoreForm = document.getElementById('create_store');
+
+// add listener
+newStoreForm.addEventListener('submit', submitStore);
+
+function submitStore() {
+  var store = event.target.store_name.value;
+  var min = event.target.min_cust.value;
+  var max = event.target.max_cust.value;
+  var avg = event.target.avg_cookies.value;
+
+// event handler
+  event.preventDefault();
+  var newStore = new Store(store, min, max, avg);
+  newStore.render();
+};
+
 var pike = new Store('1st and Pike', 23, 65, 6.3);
 var seaTac = new Store('SeaTac Airport', 3, 24, 1.2);
 var seattleCenter = new Store('Seattle Center', 11, 38, 2.3);
