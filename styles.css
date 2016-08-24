@@ -47,6 +47,10 @@ ul {
   margin: auto;
 }
 
+#sales_data {
+  color: white;
+}
+
 section {
   margin: 10px auto;
   width: 1000px;
