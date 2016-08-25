@@ -53,12 +53,15 @@ Store.prototype.render = function() {
 };
 
 var hours = ['', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var row;
+var table;
+var main;
 
 function createTable() {
   // storing sales_data in main
-  var main = document.getElementById('sales_data');
+  main = document.getElementById('sales_data');
   // make table and header row
-  var table = document.createElement('table');
+  table = document.createElement('table');
   var tableHeader = document.createElement('tr');
 
   for(var i = 0; i < hours.length; i++) {
@@ -70,16 +73,22 @@ function createTable() {
   table.appendChild(tableHeader);
 
   for(i = 0; i < stores.length; i++){
-    var row = stores[i].render();
+    row = stores[i].render();
     table.appendChild(row);
   }
 
   main.appendChild(table);
 };
 
+// function appendTable() {
+//   row = stores[stores.length - 1]
+//   table.appendChild(tr);
+// };
+
 ////////////////////////////////////////////////////////////////////
 //////////////////////////// forms /////////////////////////////////
 ////////////////////////////////////////////////////////////////////
+var newStore;
 
 // get form
 var newStoreForm = document.getElementById('create_store');
@@ -89,14 +98,17 @@ newStoreForm.addEventListener('submit', submitStore);
 
 function submitStore() {
   var store = event.target.store_name.value;
-  var min = event.target.min_cust.value;
-  var max = event.target.max_cust.value;
-  var avg = event.target.avg_cookies.value;
+  // converted these 3 variables to numbers to be used by methods
+  var minCust = Number(event.target.min_cust.value);
+  var maxCust = Number(event.target.max_cust.value);
+  var avgCookies = Number(event.target.avg_cookies.value);
 
 // event handler
   event.preventDefault();
-  var newStore = new Store(store, min, max, avg);
+  newStore = new Store(store, minCust, maxCust, avgCookies);
   newStore.render();
+  row = stores[stores.length - 1].render();
+  table.appendChild(row);
 };
 
 var pike = new Store('1st and Pike', 23, 65, 6.3);
