@@ -1,41 +1,77 @@
-/*body {
-  background-color: rgb(0, 0, 100);
-}*/
+body {
+  /*background-color: rgb(0, 0, 100);*/
+  /*position: absolute;*/
+}
 
 header {
   margin: auto;
   text-align: center;
   border: 5px outset black;
-  width: 1000px;
+  width: 1010px;
   background-image: url('images/ocean.jpg');
   padding-bottom: 10px;
+}
+
+main {
+  width: 1010px;
+  height: 500px;
+  margin: 10px auto;
+  border: 5px outset black;
+  position: relative;
+  background-color: rgba(100, 200, 200, 0.78);
 }
 
 h1 {
   font-size: 50px;
   margin: 0 auto;
-  font-family: Times;
-}
+  }
 
-h2 {
-  margin: 10px;
-  text-decoration: underline;
-  font-size: 30px;
-  text-align: center;
-}
+  h2 {
+    margin: 10px auto;
+    text-align: center;
+  }
 
-h3 {
-  margin: auto;
-  text-align: center;
-}
+  nav {
+    margin: 10px auto;
+    border: 5px outset black;
+    width: 1010px;
+    background-image: url('assets/frosted-cookie.jpg');
+    background-size: contain;
+  }
 
+  ul {
+    text-align: center;
+    background-color: rgba(100, 200, 200, 0.78);
+    border-radius: 50px;
+    width: 40%;
+    margin: auto;
+    padding: 0;
+  }
 
-p {
-  font-size: 20px;
-  font-family: serif;
-  margin: auto;
-  padding: 10px;
-}
+  li {
+    font-size: 25px;
+    display: inline;
+    margin: auto 5px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  #main_paragraph {
+    display: inline-block;
+    width: 65%;
+    margin-left: 10px;
+    font-size: 20px;
+    float: left;
+    text-align: center;
+  }
+
+  #family {
+    width: 33%;
+    border-radius: 50%;
+  }
 
 h4 {
   font-size: 20px;
@@ -48,15 +84,6 @@ h4 {
   color: white;
 }*/
 
-
-section {
-  margin: 10px auto;
-  width: 1000px;
-  border: 5px outset black;
-  padding: 10px 0;
-  background-color: rgb(0, 100, 255);
-  color: white;
-}
 
 #salmon {
   margin: auto;
