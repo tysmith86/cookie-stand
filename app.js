@@ -80,10 +80,6 @@ function createTable() {
   main.appendChild(table);
 };
 
-// function appendTable() {
-//   row = stores[stores.length - 1]
-//   table.appendChild(tr);
-// };
 
 ////////////////////////////////////////////////////////////////////
 //////////////////////////// forms /////////////////////////////////
@@ -103,12 +99,24 @@ function submitStore() {
   var maxCust = Number(event.target.max_cust.value);
   var avgCookies = Number(event.target.avg_cookies.value);
 
+// checks for blank fields, and ends function
+// forces page refresh as is ***must fix***
+  if (store == '' || minCust == '' || maxCust == '' || avgCookies == '') {
+    alert('All fields are required.');
+    return false;
+  }
+
 // event handler
   event.preventDefault();
   newStore = new Store(store, minCust, maxCust, avgCookies);
   newStore.render();
   row = stores[stores.length - 1].render();
   table.appendChild(row);
+
+  event.target.store_name.value = null;
+  event.target.max_cust.value = null;
+  event.target.min_cust.value = null;
+  event.target.avg_cookies.value = null;
 };
 
 var pike = new Store('1st and Pike', 23, 65, 6.3);
