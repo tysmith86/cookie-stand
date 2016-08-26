@@ -1,5 +1,5 @@
 'use strict';
-
+// creates empty array to store each store for rendering
 var stores = [];
 // Object concstructor
 function Store(store, minCust, maxCust, avgCookies) {
@@ -29,7 +29,7 @@ Store.prototype.cookiesPerHour = function() {
 
 // generates cookies per day
 Store.prototype.cookiesPerDay = function() {
-  for (var i = 0; i < this.cookies.length; i++) {
+  for (var i = 0; i < this.timeOfDay.length - 1; i++) {
     this.totalCookies += this.cookies[i];
     console.log('Total cookies:', this.totalCookies);
   }
@@ -39,6 +39,7 @@ Store.prototype.cookiesPerDay = function() {
 
 Store.prototype.render = function() {
   this.cookiesPerHour();
+  // this.cookiesPerDay();
   var tr = document.createElement('tr');
   var th = document.createElement('th');
   th.textContent = this.store;
@@ -48,7 +49,7 @@ Store.prototype.render = function() {
     td.textContent = this.cookies[i];
     tr.appendChild(td);
   }
-  console.log(tr);
+  // console.log(tr);
   return tr;
 };
 
@@ -119,9 +120,10 @@ var seaTac = new Store('SeaTac Airport', 3, 24, 1.2);
 var seattleCenter = new Store('Seattle Center', 11, 38, 2.3);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var alki = new Store('Alki', 2, 16, 4.6);
-pike.render();
-seaTac.render();
-seattleCenter.render();
-capitolHill.render();
-alki.render();
+// these methods are being called in the createTable function - leaving these here as reminder because I was accidentally calling these methods again, getting double results
+// pike.render();
+// seaTac.render();
+// // seattleCenter.render();
+// // capitolHill.render();
+// // alki.render();
 createTable();
