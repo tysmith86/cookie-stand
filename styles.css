@@ -30,7 +30,6 @@ h1 {
     font-size: 40px;
     margin: 10px auto;
     text-align: center;
-    border-bottom: 3px solid black;
     width: 600px;
   }
 
@@ -91,6 +90,24 @@ h4 {
   margin: 0 auto;
 }
 
+#locations {
+  text-align: left;
+  margin: auto;
+}
+
+#locations td {
+  width: 450px;
+  text-align: left;
+  padding: 0;
+  vertical-align: top;
+  font-size: 18px;
+}
+
+#locations th {
+  text-align: center;
+  font-size: 30px;
+}
+
 
 /*#sales_data {
   color: white;
@@ -102,9 +119,8 @@ h4 {
   width: 787px;
 }
 
-#store_info {
+table {
   margin: auto;
-  width: 1385px;
 }
 
 td {
