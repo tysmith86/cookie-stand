@@ -1,5 +1,7 @@
 body {
   background-image: url('images/ocean.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
   /*position: absolute;*/
 }
 
@@ -10,6 +12,7 @@ header {
   width: 1056px;
   /*background-image: url('images/ocean.jpg');*/
   padding-bottom: 10px;
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 main {
@@ -25,6 +28,7 @@ h1 {
   font-size: 50px;
   margin: 10px auto;
   font-family: 'Average', serif;
+  color: rgb(50, 100, 255);
   }
 
   h2 {
@@ -32,11 +36,20 @@ h1 {
     margin: 10px auto;
     text-align: center;
     width: 600px;
+    color: white;
   }
 
   h3 {
     font-size: 40px;
     text-align: center;
+    color: white;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-style: italic;
+    margin: 0 auto;
+    color: rgb(50, 100, 255);
   }
 
   nav {
@@ -75,8 +88,10 @@ h1 {
     margin: auto 10px;
     font-size: 20px;
     float: left;
-    font-family: 'Bree Serif', serif;
+    font-family: Georgia;
+    /*font-weight: bold;*/
     line-height: 179%;
+    color: white;
   }
 
   #family {
@@ -85,11 +100,6 @@ h1 {
     border-radius: 50%;
   }
 
-h4 {
-  font-size: 20px;
-  font-style: italic;
-  margin: 0 auto;
-}
 
 #locations {
   text-align: left;
@@ -114,9 +124,10 @@ h4 {
 }
 
 
-/*#sales_data {
-  color: white;
-}*/
+#sales_data {
+  font-family: Arial;
+  color: blue;
+}
 
 
 #salmon {
