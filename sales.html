@@ -2,7 +2,7 @@
 <html>
   <head>
     <link type="text/css" rel="stylesheet" href="styles.css">
-    <title></title>
+    <title>Sales Information</title>
   </head>
   <body>
     <div id="salmon">
@@ -12,16 +12,16 @@
 
     <form id="create_store">
       <label for="store_name">Store Name: </label>
-      <input type="text" name="store_name">
+      <input type="text" name="store_name" required >
 
       <label for="min_cust">Minimum Customers: </label>
-      <input type="text" name="min_cust">
+      <input type="text" name="min_cust" required >
 
       <label for="max_cust">Maximum Customers: </label>
-      <input type="text" name="max_cust">
+      <input type="text" name="max_cust" required>
 
       <label for="avg_cookies">Average Cookies per Customer: </label>
-      <input type="text" name="avg_cookies">
+      <input type="text" name="avg_cookies" required >
 
       <button type"submit">Create New Store</button>
     </form>

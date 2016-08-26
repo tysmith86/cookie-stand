@@ -99,12 +99,7 @@ function submitStore() {
   var maxCust = Number(event.target.max_cust.value);
   var avgCookies = Number(event.target.avg_cookies.value);
 
-// checks for blank fields, and ends function
-// forces page refresh as is ***must fix***
-  if (store == '' || minCust == '' || maxCust == '' || avgCookies == '') {
-    alert('All fields are required.');
-    return false;
-  }
+
 
 // event handler
   event.preventDefault();
