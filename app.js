@@ -83,6 +83,25 @@ function createTable() {
     table.appendChild(row);
   }
 
+  var hourlyCookies;
+  var hourlyTotal;
+  var hourlyRow = document.createElement('tr');
+  var totalHeader = document.createElement('th')
+  totalHeader.textContent = 'Hourly Total';
+  hourlyRow.appendChild(totalHeader);
+
+  for(var i = 0; i < hours.length; i++) {
+    hourlyCookies = 0;
+    for(var j = 0; j < stores.length; j++) {
+      hourlyCookies += stores[j].cookies[i];
+    }
+    hourlyTotal = document.createElement('td');
+    hourlyTotal.textContent = hourlyCookies;
+    hourlyRow.appendChild(hourlyTotal);
+    table.appendChild(hourlyRow);
+    console.log('Hourly Total:', hourlyCookies);
+  }
+
   main.appendChild(table);
 };
 

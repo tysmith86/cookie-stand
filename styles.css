@@ -1,5 +1,5 @@
 body {
-  background-image: url('images/ocean.jpg');
+  /*background-image: url('images/ocean.jpg');*/
   background-attachment: fixed;
   background-size: cover;
 }
@@ -160,7 +160,8 @@ td {
 .merch {
   width: 324px;
 }
-#create_store {
+
+/*#create_store {
   position: absolute;
   top: 210px;;
-}
+}*/
