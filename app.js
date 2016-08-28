@@ -40,7 +40,6 @@ var row;
 var table;
 var main;
 
-
 // creates new row for each store
 Store.prototype.render = function() {
   this.cookiesPerHour();
