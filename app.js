@@ -83,14 +83,19 @@ function createTable() {
     table.appendChild(row);
   }
 
-  var hourlyCookies;
-  var hourlyTotal;
-  var hourlyRow = document.createElement('tr');
-  var totalHeader = document.createElement('th')
+  createTotalsRow();
+  main.appendChild(table);
+};
+
+var hourlyCookies;
+var hourlyTotal;
+var hourlyRow = document.createElement('tr');
+var totalHeader = document.createElement('th')
+
+function createTotalsRow() {
   totalHeader.textContent = 'Hourly Total';
   hourlyRow.appendChild(totalHeader);
-
-  for(var i = 0; i < hours.length; i++) {
+  for(var i = 0; i < hours.length - 1; i++) {
     hourlyCookies = 0;
     for(var j = 0; j < stores.length; j++) {
       hourlyCookies += stores[j].cookies[i];
@@ -101,10 +106,7 @@ function createTable() {
     table.appendChild(hourlyRow);
     console.log('Hourly Total:', hourlyCookies);
   }
-
-  main.appendChild(table);
-};
-
+}
 
 var newStore;
 
@@ -133,6 +135,9 @@ function submitStore() {
   event.target.max_cust.value = null;
   event.target.min_cust.value = null;
   event.target.avg_cookies.value = null;
+  hourlyRow.textContent = null;
+  // table.removeChild(hourlyRow);
+  createTotalsRow();
 };
 
 // creates each store object
