@@ -70,7 +70,7 @@ Store.prototype.render = function() {
 
 // function to create the table using the return values from the render method
 function createTable() {
-  main  = document.getElementById('sales_data');
+  main = document.getElementById('sales_data');
   table = document.createElement('table');
   var tableHeader = document.createElement('tr');
   for(var i = 0; i < hours.length; i++) {
@@ -95,7 +95,7 @@ function createTable() {
 var hourlyCookies;
 var hourlyTotal;
 var hourlyRow   = document.createElement('tr');
-var totalHeader = document.createElement('th')
+var totalHeader = document.createElement('th');
 
 function createTotalsRow() {
   totalHeader.textContent = 'Hourly Total';
@@ -131,7 +131,6 @@ function submitStore() {
 // event handler
   event.preventDefault();
   newStore = new Store(store, minCust, maxCust, avgCookies);
-  newStore.render();
   row = stores[stores.length - 1].render();
   table.appendChild(row);
 
