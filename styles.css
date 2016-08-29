@@ -161,7 +161,23 @@ td {
   width: 324px;
 }
 
-/*#create_store {
-  position: absolute;
-  top: 210px;;
-}*/
+#create_store {
+  border: 5px outset black;
+  padding: 10px;
+  background-color: rgba(100, 200, 200, 0.78);
+  width: 1036px;
+  margin: auto;
+
+}
+
+label {
+  font-weight: bold;
+}
+
+form :nth-child(2) {
+  width: 130px;
+}
+
+input {
+  width: 40px;
+}
