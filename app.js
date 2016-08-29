@@ -143,10 +143,10 @@ function submitStore() {
 };
 
 // creates each store object
-var pike = new Store('1st and Pike', 23, 65, 6.3);
-var seaTac = new Store('SeaTac Airport', 3, 24, 1.2);
-var seattleCenter = new Store('Seattle Center', 11, 38, 2.3);
-var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
-var alki = new Store('Alki', 2, 16, 4.6);
+var pike = new Store('1st and Pike', 23, 65, 6.3); // eslint-disable-line
+var seaTac = new Store('SeaTac Airport', 3, 24, 1.2); // eslint-disable-line
+var seattleCenter = new Store('Seattle Center', 11, 38, 2.3); // eslint-disable-line
+var capitolHill = new Store('Capitol Hill', 20, 38, 2.3); // eslint-disable-line
+var alki = new Store('Alki', 2, 16, 4.6); // eslint-disable-line
 
 createTable();
