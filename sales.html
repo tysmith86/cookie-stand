@@ -1,30 +1,42 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link type="text/css" rel="stylesheet" href="styles.css">
-    <title>Sales Information</title>
-  </head>
-  <body>
-    <div id="salmon">
-      <image src="images/salmon.png"/>
-    </div>
-    <main id="sales_data"></main>
+<head>
+  <link type="text/css" rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Average|Bree+Serif" rel="stylesheet">
+  <title>Sales Data</title>
+</head>
+<body>
 
+  <header>
+    <h1>Pat's Salmon Cookies</h1>
+  <div id="salmon"><image src="images/salmon.png"/></div>
+  <h4>Combining the best of both worlds</h4>
+</header>
+
+<nav>
+  <ul>
+    <a href="index.html"><li>Home</li></a>
+    <a href="locations.html"><li>Locations</li></a>
+    <a href="merchandise.html"><li>Merchandise</li></a>
+  </ul>
+</nav>
+
+    <main id="sales_data">
+      <h2>Sales Data for All Stores</h2>
+    </main>
     <form id="create_store">
       <label for="store_name">Store Name: </label>
       <input type="text" name="store_name" required >
-
       <label for="min_cust">Minimum Customers: </label>
       <input type="text" name="min_cust" required >
-
       <label for="max_cust">Maximum Customers: </label>
       <input type="text" name="max_cust" required>
-
       <label for="avg_cookies">Average Cookies per Customer: </label>
       <input type="text" name="avg_cookies" required >
-
       <button type"submit">Create New Store</button>
     </form>
+
+
 
     <script src="app.js"></script>
   </body>

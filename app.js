@@ -1,7 +1,7 @@
 'use strict';
 // creates empty array to store each store for rendering
 var stores = [];
-// Object concstructor
+
 function Store(store, minCust, maxCust, avgCookies) {
   this.store = store;
   this.minCust = minCust;
@@ -23,7 +23,7 @@ Store.prototype.cookiesPerHour = function() {
   for (var i = 0; i < this.timeOfDay.length - 1; i++) {
     var hourly = Math.floor(this.generateRandom() * this.avgCookies);
     // console.log('Cookies per hour', hourly);
-    this.cookies.push(hourly); // stores cookies per hour in array
+    this.cookies.push(hourly);
   }
 };
 
@@ -36,72 +36,84 @@ Store.prototype.cookiesPerDay = function() {
 };
 
 var hours = ['', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var grandTotal = 0;
 var row;
 var table;
 var main;
+var grandTotalTd = document.createElement('td');
 
-
-
+// creates new row for each store
 Store.prototype.render = function() {
-  // calls both methods so their return/variable values are available to this method
   this.cookiesPerHour();
   this.cookiesPerDay();
-  // creates tr and th elements to be given text content and appended to the table
+
   var tr = document.createElement('tr');
   var th = document.createElement('th');
-  // sets the text content of the th element to the store name
+
   th.textContent = this.store;
-  // now that the th has content, this appends the th to the tr
   tr.appendChild(th);
-  // for each hour of the day, this loop creates a new td element, and sets the content to the number of cookies during that hour
+
   for(var i = 0; i < this.timeOfDay.length - 1; i++) {
     var td = document.createElement('td');
     td.textContent = this.cookies[i];
-    // once the content is set, this appends the td element to the tr
     tr.appendChild(td);
+    console.log('Grand Total:', grandTotal);
   }
-  // create new td element for the totals, and append this element to tr
+  // sets the total for all stores
+  grandTotal += this.totalCookies;
+  grandTotalTd.textContent = grandTotal;
   var total = document.createElement('td');
   total.textContent = this.totalCookies;
   tr.appendChild(total);
-  // returns the tr element to be used by the createTable function
   return tr;
 };
 
 // function to create the table using the return values from the render method
 function createTable() {
-  // retrieving and storing the sales_data id node and storing in the variable 'main'
-  main = document.getElementById('sales_data');
-  // make table and header row
+  main  = document.getElementById('sales_data');
   table = document.createElement('table');
   var tableHeader = document.createElement('tr');
-  // iterates through each hour in hours array, creating a th for each hour of the day
   for(var i = 0; i < hours.length; i++) {
     var th = document.createElement('th');
-    // sets the text content of th to a given hour from the array that the loop is currently on
     th.textContent = hours[i];
-    // once the text content is set, this adds the th to the tableHeader row
     tableHeader.appendChild(th);
   }
   // creates new th element for the total column header, and appends to row
   var total = document.createElement('th');
   total.textContent = 'Total';
   tableHeader.appendChild(total);
-  // after the loop appends all the th elements to the tableHeader row, this line adds the tableHeader to the table
   table.appendChild(tableHeader);
-  // iterates through each store in the stores array, calling the render method on each store, and adds each stores row to the table
   for(i = 0; i < stores.length; i++){
     row = stores[i].render();
     table.appendChild(row);
   }
 
+  createTotalsRow();
   main.appendChild(table);
 };
 
+var hourlyCookies;
+var hourlyTotal;
+var hourlyRow   = document.createElement('tr');
+var totalHeader = document.createElement('th')
 
-////////////////////////////////////////////////////////////////////
-//////////////////////////// forms /////////////////////////////////
-////////////////////////////////////////////////////////////////////
+function createTotalsRow() {
+  totalHeader.textContent = 'Hourly Total';
+  hourlyRow.appendChild(totalHeader);
+  for(var i = 0; i < hours.length - 1; i++) {
+    hourlyCookies = 0;
+    for(var j = 0; j < stores.length; j++) {
+      hourlyCookies += stores[j].cookies[i];
+    }
+    hourlyTotal = document.createElement('td');
+    hourlyTotal.textContent = hourlyCookies;
+    hourlyRow.appendChild(hourlyTotal);
+    table.appendChild(hourlyRow);
+    console.log('Hourly Total:', hourlyCookies);
+  }
+  hourlyRow.appendChild(grandTotalTd);
+}
+
 var newStore;
 
 // get form
@@ -111,13 +123,10 @@ var newStoreForm = document.getElementById('create_store');
 newStoreForm.addEventListener('submit', submitStore);
 
 function submitStore() {
-  var store = event.target.store_name.value;
-  // converted these 3 variables to numbers to be used by methods
-  var minCust = Number(event.target.min_cust.value);
-  var maxCust = Number(event.target.max_cust.value);
+  var store      = event.target.store_name.value;
+  var minCust    = Number(event.target.min_cust.value);
+  var maxCust    = Number(event.target.max_cust.value);
   var avgCookies = Number(event.target.avg_cookies.value);
-
-
 
 // event handler
   event.preventDefault();
@@ -130,17 +139,15 @@ function submitStore() {
   event.target.max_cust.value = null;
   event.target.min_cust.value = null;
   event.target.avg_cookies.value = null;
+  hourlyRow.textContent = null;
+  createTotalsRow();
 };
 
+// creates each store object
 var pike = new Store('1st and Pike', 23, 65, 6.3);
 var seaTac = new Store('SeaTac Airport', 3, 24, 1.2);
 var seattleCenter = new Store('Seattle Center', 11, 38, 2.3);
 var capitolHill = new Store('Capitol Hill', 20, 38, 2.3);
 var alki = new Store('Alki', 2, 16, 4.6);
-// these methods are being called in the createTable function - leaving these here as reminder because I was accidentally calling these methods again, getting double results
-// pike.render();
-// seaTac.render();
-// // seattleCenter.render();
-// // capitolHill.render();
-// // alki.render();
+
 createTable();

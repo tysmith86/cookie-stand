@@ -1,8 +1,7 @@
 body {
   background-image: url('images/ocean.jpg');
-  background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: cover;
-  /*position: absolute;*/
 }
 
 header {
@@ -10,14 +9,12 @@ header {
   text-align: center;
   border: 5px outset;
   width: 1056px;
-  /*background-image: url('images/ocean.jpg');*/
   padding-bottom: 10px;
   background-color: rgba(255, 255, 255, 0.2);
 }
 
 main {
   width: 1056px;
-  height: 450px;
   margin: 10px auto;
   border: 5px outset black;
   position: relative;
@@ -33,16 +30,14 @@ h1 {
 
   h2 {
     font-size: 40px;
-    margin: 10px auto;
+    margin: 2px auto;
     text-align: center;
     width: 600px;
-    color: white;
   }
 
   h3 {
     font-size: 40px;
     text-align: center;
-    color: white;
   }
 
   h4 {
@@ -62,7 +57,7 @@ h1 {
 
   ul {
     text-align: center;
-    width: 40%;
+    width: 45%;
     margin: 5px auto;
     padding: 0;
   }
@@ -91,25 +86,31 @@ h1 {
     font-family: Georgia;
     /*font-weight: bold;*/
     line-height: 179%;
-    color: white;
   }
 
-  #family {
-    width: 33%;
-    border: 3px groove red;
-    border-radius: 50%;
+  p {
+    text-align: center;
+    font-size: 20px;
+    font-family: Georgia;
   }
+
+#family {
+  width: 33%;
+  border: 3px groove red;
+  border-radius: 50%;
+}
 
 
 #locations {
   text-align: left;
-  margin: auto;
+  margin-bottom: 15px;
+  margin-left: 75px;
 }
 
 #locations td {
   width: 450px;
   text-align: left;
-  padding: 0;
+  padding: 0 25px 20px 0;
   vertical-align: top;
   font-size: 18px;
 }
@@ -117,18 +118,21 @@ h1 {
 #locations th {
   text-align: center;
   font-size: 30px;
+  padding-right: 25px;
 }
 
-#tfoot {
+#locations td {
   text-align: center;
 }
 
-
 #sales_data {
   font-family: Arial;
-  color: blue;
+  position: relative;
 }
 
+#sales_data table {
+
+}
 
 #salmon {
   margin: auto;
@@ -141,4 +145,47 @@ table {
 
 td {
   text-align: right;
+}
+
+#merchandise {
+  border-collapse: collapse;
+}
+
+#merchandise td {
+  text-align: left;
+  vertical-align: top;
+  border: 3px solid black;
+}
+
+.merch {
+  width: 324px;
+}
+
+#create_store {
+  border: 5px outset black;
+  padding: 10px;
+  background-color: rgba(100, 200, 200, 0.78);
+  width: 1036px;
+  margin: auto;
+
+}
+
+label {
+  font-weight: bold;
+}
+
+form :nth-child(2) {
+  width: 130px;
+}
+
+input {
+  width: 40px;
+}
+
+footer {
+  border: 5px outset black;
+  background-color: rgba(100, 200, 200, 0.78);
+  width: 70px;
+  margin: auto;
+  padding: 2px;
 }
