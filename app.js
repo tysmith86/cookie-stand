@@ -36,9 +36,11 @@ Store.prototype.cookiesPerDay = function() {
 };
 
 var hours = ['', '6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+var grandTotal = 0;
 var row;
 var table;
 var main;
+var grandTotalTd = document.createElement('td');
 
 // creates new row for each store
 Store.prototype.render = function() {
@@ -55,8 +57,11 @@ Store.prototype.render = function() {
     var td = document.createElement('td');
     td.textContent = this.cookies[i];
     tr.appendChild(td);
+    console.log('Grand Total:', grandTotal);
   }
-  // create new td element for the totals, and append this element to tr
+  // sets the total for all stores
+  grandTotal += this.totalCookies;
+  grandTotalTd.textContent = grandTotal;
   var total = document.createElement('td');
   total.textContent = this.totalCookies;
   tr.appendChild(total);
@@ -106,6 +111,7 @@ function createTotalsRow() {
     table.appendChild(hourlyRow);
     console.log('Hourly Total:', hourlyCookies);
   }
+  hourlyRow.appendChild(grandTotalTd);
 }
 
 var newStore;
