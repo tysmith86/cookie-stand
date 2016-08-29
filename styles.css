@@ -30,7 +30,7 @@ h1 {
 
   h2 {
     font-size: 40px;
-    margin: 10px auto;
+    margin: 2px auto;
     text-align: center;
     width: 600px;
   }
@@ -180,4 +180,12 @@ form :nth-child(2) {
 
 input {
   width: 40px;
+}
+
+footer {
+  border: 5px outset black;
+  background-color: rgba(100, 200, 200, 0.78);
+  width: 70px;
+  margin: auto;
+  padding: 2px;
 }

@@ -94,7 +94,7 @@ function createTable() {
 
 var hourlyCookies;
 var hourlyTotal;
-var hourlyRow = document.createElement('tr');
+var hourlyRow   = document.createElement('tr');
 var totalHeader = document.createElement('th')
 
 function createTotalsRow() {
@@ -123,12 +123,10 @@ var newStoreForm = document.getElementById('create_store');
 newStoreForm.addEventListener('submit', submitStore);
 
 function submitStore() {
-  var store = event.target.store_name.value;
-  var minCust = Number(event.target.min_cust.value);
-  var maxCust = Number(event.target.max_cust.value);
+  var store      = event.target.store_name.value;
+  var minCust    = Number(event.target.min_cust.value);
+  var maxCust    = Number(event.target.max_cust.value);
   var avgCookies = Number(event.target.avg_cookies.value);
-
-
 
 // event handler
   event.preventDefault();
@@ -142,7 +140,6 @@ function submitStore() {
   event.target.min_cust.value = null;
   event.target.avg_cookies.value = null;
   hourlyRow.textContent = null;
-  // table.removeChild(hourlyRow);
   createTotalsRow();
 };
 
